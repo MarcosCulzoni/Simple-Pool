@@ -1,4 +1,5 @@
 <?php
+
 namespace SimplePoll\Public\Shortcodes;
 
 if (!defined('ABSPATH')) {
@@ -11,6 +12,85 @@ class SPOLL_Shortcodes
 {
     public static function init()
     {
-       
+        add_shortcode('spoll_form', [self::class, 'render_form']);
+        add_action('wp_enqueue_scripts', [self::class, 'enqueue_assets']);
+
+        // AJAX actions
+        add_action('wp_ajax_spoll_guardar', [self::class, 'guardar_encuesta']);
+        add_action('wp_ajax_spoll_enviar', [self::class, 'enviar_encuesta']);
+        add_action('wp_ajax_spoll_descartar', [self::class, 'descartar_encuesta']);
+    }
+
+
+
+
+    public static function enqueue_assets()
+    {
+        wp_enqueue_script('spoll-script', SPOLL_PLUGIN_URL . 'public/assets/spoll.js', ['jquery'], SPOLL_VERSION, true);
+        wp_localize_script('spoll-script', 'spoll_ajax', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('spoll_nonce')
+        ]);
+    }
+
+    public static function render_form()
+    {
+        $contenido = get_option('encuesta_restaurantes_progreso');
+
+        if (!$contenido) {
+            $contenido = get_option('encuesta_restaurantes_plantilla');
+        }
+
+        ob_start(); ?>
+        <div id="spoll-encuesta-wrap">
+            <h2>Encuesta Anónima: Tecnología y Mejoras en Negocios Gastronómicos</h2>
+            <textarea id="spoll-contenido" rows="25" style="width:100%;"><?php echo esc_textarea($contenido); ?></textarea>
+            <div style="margin-top:10px;">
+                <button id="spoll-btn-descartar">🧹 Descartar / Nueva</button>
+                <button id="spoll-btn-guardar">💾 Guardar</button>
+                <button id="spoll-btn-enviar">✅ Enviar</button>
+            </div>
+            <div id="spoll-mensaje" style="margin-top:10px;"></div>
+        </div>
+<?php
+        return ob_get_clean();
+    }
+
+    public static function guardar_encuesta()
+    {
+        check_ajax_referer('spoll_nonce', 'nonce');
+
+        $contenido = sanitize_textarea_field($_POST['contenido']);
+        update_option('encuesta_restaurantes_progreso', $contenido);
+
+        wp_send_json_success('Encuesta guardada.');
+    }
+
+    public static function enviar_encuesta()
+    {
+        check_ajax_referer('spoll_nonce', 'nonce');
+
+        global $wpdb;
+        $table = $wpdb->prefix . 'encuestas_gastronomia';
+        $contenido = sanitize_textarea_field($_POST['contenido']);
+
+        $wpdb->insert($table, [
+            'fecha' => current_time('mysql'),
+            'contenido' => $contenido
+        ]);
+
+        delete_option('encuesta_restaurantes_progreso');
+
+        wp_send_json_success('Encuesta enviada con éxito.');
+    }
+
+    public static function descartar_encuesta()
+    {
+        check_ajax_referer('spoll_nonce', 'nonce');
+
+        delete_option('encuesta_restaurantes_progreso');
+
+        $plantilla = get_option('encuesta_restaurantes_plantilla');
+        wp_send_json_success($plantilla);
     }
 }
