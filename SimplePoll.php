@@ -12,19 +12,17 @@ if (!defined('ABSPATH')) {
 }
 
 // Definir constantes
-define('AI_CONECTOR_VERSION', '1.0');
-define('AI_CONECTOR_PREFIX', 'SPOOL_'); // Prefijo estandarizado
+define('SPOLL_VERSION', '1.0');
+define('SPOLL_PREFIX', 'SPOLL_'); // Prefijo estandarizado
 
 
 // Rutas del plugin
-define('SPOOL_PLUGIN_PATH', plugin_dir_path(__FILE__)); 
-define('SPOOL_PLUGIN_URL', plugin_dir_url(__FILE__));  
+define('SPOLL_PLUGIN_PATH', plugin_dir_path(__FILE__)); 
+define('SPOLL_PLUGIN_URL', plugin_dir_url(__FILE__));  
 
 // Cargar archivos de clase
-
-
-require_once AI_CONECTOR_PLUGIN_PATH . 'public/shortcodes/AI_ConectorShortcodes.php';
-require_once AI_CONECTOR_PLUGIN_PATH . 'includes/AI_ConectorClassPlugin.php';
+require_once SPOLL_PLUGIN_PATH . 'public/shortcodes/SPOLL_Shortcodes.php';
+require_once SPOLL_PLUGIN_PATH . 'includes/SPOLL_ClassPlugin.php';
 
 
 
@@ -48,25 +46,21 @@ require_once AI_CONECTOR_PLUGIN_PATH . 'includes/AI_ConectorClassPlugin.php';
 
 
 // Registrar hooks principales
-register_activation_hook(__FILE__, ['SimplePoll\Includes\AI_ConectorClassPlugin', 'activate']);
-register_deactivation_hook(__FILE__, ['AI_Conector\Includes\AI_ConectorClassPlugin', 'deactivate']);
-register_uninstall_hook(__FILE__, ['AI_Conector\Includes\AI_ConectorClassPlugin', 'uninstall']);
+register_activation_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'activate']);
+register_deactivation_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'deactivate']);
+register_uninstall_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'uninstall']);
 
 // Inicializar el plugin
 function ai_conector_run_plugin()
 {
-    AI_Conector\Includes\AI_ConectorClassPlugin::init();
-    AI_Conector\Admin\AI_ConectorClassAdmin::init();
+    SimplePoll\Includes\SPOLL_ClassPlugin::init();
+    
+ //   AI_Conector\Admin\AI_ConectorClassAdmin::init();
     AI_Conector\Public\Shortcodes\AI_ConectorShortcodes::init();
-    AI_Conector\Includes\AI_ConectorManager::scheduleInit(); // Para que se registre el hook
+  //  AI_Conector\Includes\AI_ConectorManager::scheduleInit(); // Para que se registre el hook
 }
 
 // Asegura que las dependencias de otros plugins estén cargadas antes de inicializar este plugin.
 add_action('plugins_loaded', 'ai_conector_run_plugin');
 
-// Cargar CSS en el admin
-function ai_conector_enqueue_admin_styles()
-{
-    wp_enqueue_style('ai_conector_admin_css', plugins_url('assets/css/admin.css', __FILE__));
-}
-add_action('admin_enqueue_scripts', 'ai_conector_enqueue_admin_styles');
+

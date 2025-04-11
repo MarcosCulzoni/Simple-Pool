@@ -1,9 +1,8 @@
 <?php
 
-namespace AI_Conector\Includes;
+namespace SimplePoll\Includes;
 
-use AI_Conector\Includes\AI_ConectorSystemManager;
-use AI_Conector\Logs\AI_ConectorLogger;
+
 
 if (!defined('ABSPATH')) {
     exit;
@@ -11,7 +10,7 @@ if (!defined('ABSPATH')) {
 
 
 
-class AI_ConectorClassPlugin
+class SPOLL_ClassPlugin
 {
     public static function init() {}
 
