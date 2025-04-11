@@ -1,0 +1,56 @@
+/* Estilos para el formulario */
+#ai-conector-form {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Estilos para las etiquetas */
+#ai-conector-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilos para los campos de entrada */
+#ai-conector-form input,
+#ai-conector-form select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Separación del último campo */
+#ai-conector-form select[name="ai_conector_api_primary_active"] {
+    margin-bottom: 15px;
+}
+
+/* Estilos para el botón */
+#ai-conector-form button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #0073aa;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#ai-conector-form button:hover {
+    background-color: #005f8d;
+}
+
+/* Mensaje de confirmación */
+#ai-conector-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+    text-align: center;
+}
+    
