@@ -20,6 +20,7 @@ class SPOLL_ClassPlugin
 
     public static function activate()
     {
+        error_log('Se ha activado SimplePoll');
 
         //Crea la tabla para las encustas si no existe
         global $wpdb;
@@ -55,6 +56,7 @@ class SPOLL_ClassPlugin
     public static function deactivate()
     {
         
+        error_log('Se ha desactivado Simple Pool');
 
 
     }
@@ -70,6 +72,7 @@ class SPOLL_ClassPlugin
     public static function uninstall()
     {
 
+        error_log('Se ha desinstaldo SimplePoll');
 
         // desinstala y borra la base de datos no hay vuelta atras
         global $wpdb;
@@ -80,6 +83,7 @@ class SPOLL_ClassPlugin
         // Borrar opciones del sistema
         delete_option('encuesta_restaurantes_plantilla');
         delete_option('encuesta_restaurantes_progreso');
+
 
 
     }

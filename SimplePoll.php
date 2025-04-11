@@ -26,9 +26,9 @@ require_once SPOLL_PLUGIN_PATH . 'includes/SPOLL_ClassPlugin.php';
 
 
 // Registrar hooks principales
-register_activation_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'activate']);
-register_deactivation_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'deactivate']);
-register_uninstall_hook(__FILE__, ['SimplePoll\Includes\SPOOL_ClassPlugin', 'uninstall']);
+register_activation_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'activate']);
+register_deactivation_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'deactivate']);
+register_uninstall_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'uninstall']);
 
 // Inicializar el plugin
 function SPOLL__run_plugin()
