@@ -21,9 +21,9 @@ define('SPOLL_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('SPOLL_PLUGIN_URL', plugin_dir_url(__FILE__));  
 
 // Cargar archivos de clase, despues de esto ya referencia las clases usando los espacios de nombre
-require_once SPOLL_PLUGIN_PATH . 'public/shortcodes/SPOLL_Shortcodes.php';
+require_once SPOLL_PLUGIN_PATH . 'public/shortcodes/SPOLL_ShortcodesDashboard.php';
+require_once SPOLL_PLUGIN_PATH .  'public/shortcodes/SPOLL_Shortcodes.php';
 require_once SPOLL_PLUGIN_PATH . 'includes/SPOLL_ClassPlugin.php';
-
 
 // Registrar hooks principales
 register_activation_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'activate']);
@@ -35,6 +35,8 @@ function SPOLL__run_plugin()
 {
     SimplePoll\Includes\SPOLL_ClassPlugin::init();
     SimplePoll\Public\Shortcodes\SPOLL_Shortcodes::init();
+    SimplePoll\Public\Shortcodes\SPOLL_ShortcodesDashboard::init();
+
 }
 
 // Asegura que las dependencias de otros plugins estén cargadas antes de inicializar este plugin.

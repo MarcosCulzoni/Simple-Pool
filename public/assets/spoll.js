@@ -51,5 +51,3 @@ jQuery(function ($) {
     console.log('SPOLL JS iniciado');
     new SimplePoll.SPOLL_Encuesta();
 });
-
-

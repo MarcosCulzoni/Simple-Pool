@@ -12,6 +12,8 @@ class SPOLL_Shortcodes
 {
     public static function init()
     {
+
+
         add_shortcode('spoll_form', [self::class, 'render_form']);
         add_action('wp_enqueue_scripts', [self::class, 'enqueue_assets']);
 
@@ -27,9 +29,9 @@ class SPOLL_Shortcodes
     public static function enqueue_assets()
     {
         error_log('🔧 Enqueue_assets ejecutado');
-    
+
         wp_enqueue_script('spoll-script', SPOLL_PLUGIN_URL . 'public/assets/spoll.js', ['jquery'], SPOLL_VERSION, true);
-    
+
         wp_localize_script('spoll-script', 'spoll_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('spoll_nonce')
@@ -46,15 +48,17 @@ class SPOLL_Shortcodes
 
         ob_start(); ?>
         <div id="spoll-encuesta-wrap">
-            
             <textarea id="spoll-contenido" rows="25" style="width:100%;"><?php echo esc_textarea($contenido); ?></textarea>
-            <div style="margin-top:10px;">
+
+            <div style="margin-top:10px; display: flex; justify-content: center; gap: 10px;">
                 <button id="spoll-btn-descartar">🧹 Descartar / Nueva</button>
                 <button id="spoll-btn-guardar">💾 Guardar</button>
                 <button id="spoll-btn-enviar">✅ Enviar</button>
             </div>
+
             <div id="spoll-mensaje" style="margin-top:10px;"></div>
         </div>
+
 <?php
         return ob_get_clean();
     }
