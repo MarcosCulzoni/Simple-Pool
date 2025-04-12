@@ -46,7 +46,7 @@ class SPOLL_Shortcodes
 
         ob_start(); ?>
         <div id="spoll-encuesta-wrap">
-            <h2>Encuesta Anónima: Tecnología y Mejoras en Negocios Gastronómicos</h2>
+            
             <textarea id="spoll-contenido" rows="25" style="width:100%;"><?php echo esc_textarea($contenido); ?></textarea>
             <div style="margin-top:10px;">
                 <button id="spoll-btn-descartar">🧹 Descartar / Nueva</button>

@@ -39,5 +39,3 @@ function SPOLL__run_plugin()
 
 // Asegura que las dependencias de otros plugins estén cargadas antes de inicializar este plugin.
 add_action('plugins_loaded', 'SPOLL__run_plugin');
-
-
