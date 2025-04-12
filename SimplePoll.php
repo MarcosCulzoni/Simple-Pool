@@ -24,6 +24,7 @@ define('SPOLL_PLUGIN_URL', plugin_dir_url(__FILE__));
 require_once SPOLL_PLUGIN_PATH . 'public/shortcodes/SPOLL_ShortcodesDashboard.php';
 require_once SPOLL_PLUGIN_PATH .  'public/shortcodes/SPOLL_Shortcodes.php';
 require_once SPOLL_PLUGIN_PATH . 'includes/SPOLL_ClassPlugin.php';
+require_once SPOLL_PLUGIN_PATH . 'includes/SPOLL_Public-Functions.php';
 
 // Registrar hooks principales
 register_activation_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'activate']);

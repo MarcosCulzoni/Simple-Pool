@@ -1,7 +1,15 @@
 <?php
+
+// Evitar acceso directo
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Hook para usuarios logueados y no logueados
 add_action('admin_post_exportar_encuestas_txt', 'spoll_exportar_encuestas_txt');
 add_action('admin_post_nopriv_exportar_encuestas_txt', 'spoll_exportar_encuestas_txt');
 
+// Función que exporta las encuestas
 function spoll_exportar_encuestas_txt() {
     global $wpdb;
 
