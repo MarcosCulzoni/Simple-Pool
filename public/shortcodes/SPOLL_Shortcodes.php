@@ -26,7 +26,10 @@ class SPOLL_Shortcodes
 
     public static function enqueue_assets()
     {
+        error_log('🔧 Enqueue_assets ejecutado');
+    
         wp_enqueue_script('spoll-script', SPOLL_PLUGIN_URL . 'public/assets/spoll.js', ['jquery'], SPOLL_VERSION, true);
+    
         wp_localize_script('spoll-script', 'spoll_ajax', [
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('spoll_nonce')

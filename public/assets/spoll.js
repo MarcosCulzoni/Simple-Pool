@@ -2,13 +2,13 @@ window.SimplePoll = window.SimplePoll || {}; // Namespace global
 
 SimplePoll.SPOLL_Encuesta = class {
     constructor() {
-        this.$mensaje = $('#spoll-mensaje');
-        this.$contenido = $('#spoll-contenido');
+        this.$mensaje = jQuery('#spoll-mensaje');
+        this.$contenido = jQuery('#spoll-contenido');
         this.initListeners();
     }
 
     ajax(action, extra = {}) {
-        return $.post(spoll_ajax.ajax_url, {
+        return jQuery.post(spoll_ajax.ajax_url, {
             action: action,
             nonce: spoll_ajax.nonce,
             contenido: this.$contenido.val(),
@@ -17,9 +17,9 @@ SimplePoll.SPOLL_Encuesta = class {
     }
 
     initListeners() {
-        $('#spoll-btn-guardar').on('click', () => this.guardar());
-        $('#spoll-btn-enviar').on('click', () => this.enviar());
-        $('#spoll-btn-descartar').on('click', () => this.descartar());
+        jQuery('#spoll-btn-guardar').on('click', () => this.guardar());
+        jQuery('#spoll-btn-enviar').on('click', () => this.enviar());
+        jQuery('#spoll-btn-descartar').on('click', () => this.descartar());
     }
 
     guardar() {
@@ -46,14 +46,10 @@ SimplePoll.SPOLL_Encuesta = class {
 };
 
 
-(function($){
+
+jQuery(function ($) {
     console.log('SPOLL JS iniciado');
+    new SimplePoll.SPOLL_Encuesta();
+});
 
-    if (typeof SimplePoll !== 'undefined') {
-        new SimplePoll.SPOLL_Encuesta();
-    } else {
-        console.error('SimplePoll no está definido');
-    }
-
-})(jQuery);
 
