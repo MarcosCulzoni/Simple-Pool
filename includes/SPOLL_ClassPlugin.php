@@ -7,10 +7,9 @@ if (!defined('ABSPATH')) {
 }
 
 
+
 class SPOLL_ClassPlugin
 {
-    public static function init() {}
-
 
 
     public static function activate()
@@ -158,8 +157,12 @@ Comentarios adicionales:
 
 ✨ FIN DE ENCUESTA [Negocio X] ✨
 ";
-        add_option('encuesta_restaurantes_plantilla', $formato_base);
+        update_option('encuesta_restaurantes_plantilla', $formato_base);
     }
+
+
+
+
 
 
 
