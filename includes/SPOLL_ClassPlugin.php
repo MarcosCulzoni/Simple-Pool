@@ -2,19 +2,14 @@
 
 namespace SimplePoll\Includes;
 
-
-
 if (!defined('ABSPATH')) {
     exit;
 }
 
 
-
 class SPOLL_ClassPlugin
 {
     public static function init() {}
-
-
 
 
 
@@ -37,6 +32,21 @@ class SPOLL_ClassPlugin
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
+
+        //Registrar posibles errores
+        if ($wpdb->last_error) {
+            error_log("Error creando la tabla: " . $wpdb->last_error);
+        }
+
+
+        // Verificar si la tabla se creó correctamente
+        $table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'");
+        if (!$table_exists) {
+            error_log("Error crítico: La tabla $table_name no se creó correctamente.");
+        } else {
+            error_log("La tabla $table_name se creó o ya existía.");
+        }
+
 
 
         // Encuesta en blanco
@@ -149,26 +159,18 @@ Comentarios adicionales:
 ✨ FIN DE ENCUESTA [Negocio X] ✨
 ";
         add_option('encuesta_restaurantes_plantilla', $formato_base);
-
-
-
     }
-
-
-
 
 
 
 
     public static function deactivate()
     {
-        
+
         error_log('Se ha desactivado Simple Pool');
-         // Borrar opciones del sistema
-         delete_option('encuesta_restaurantes_plantilla');
-         delete_option('encuesta_restaurantes_progreso');
-
-
+        // Borrar opciones del sistema
+        delete_option('encuesta_restaurantes_plantilla');
+        delete_option('encuesta_restaurantes_progreso');
     }
 
 
@@ -177,7 +179,7 @@ Comentarios adicionales:
 
 
 
-    
+
 
     public static function uninstall()
     {
@@ -187,11 +189,16 @@ Comentarios adicionales:
         // desinstala y borra la base de datos no hay vuelta atras
         global $wpdb;
         $table_name = $wpdb->prefix . 'encuestas_gastronomia';
-        $wpdb->query("DROP TABLE IF EXISTS $table_name");
+        //$wpdb->query("DROP TABLE IF EXISTS $table_name");
 
 
-        
 
-
+        $table_exists = $wpdb->get_var("SHOW TABLES LIKE '$table_name'");
+        if ($table_exists) {
+            $wpdb->query("DROP TABLE IF EXISTS $table_name");
+            error_log("Tabla $table_name eliminada correctamente.");
+        } else {
+            error_log("La tabla $table_name no existe, nada que eliminar.");
+        }
     }
 }
