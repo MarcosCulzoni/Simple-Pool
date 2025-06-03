@@ -21,6 +21,11 @@ class SPOLL_Shortcodes
         add_action('wp_ajax_nopriv_spoll_guardar', [self::class, 'guardar_encuesta']);
         add_action('wp_ajax_nopriv_spoll_enviar', [self::class, 'enviar_encuesta']);
         add_action('wp_ajax_nopriv_spoll_descartar', [self::class, 'descartar_encuesta']);
+
+
+        add_action('wp_ajax_spoll_guardar', [self::class, 'guardar_encuesta']);
+        add_action('wp_ajax_spoll_enviar', [self::class, 'enviar_encuesta']);
+        add_action('wp_ajax_spoll_descartar', [self::class, 'descartar_encuesta']);
     }
 
 
