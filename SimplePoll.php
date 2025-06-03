@@ -34,7 +34,7 @@ register_uninstall_hook(__FILE__, ['SimplePoll\Includes\SPOLL_ClassPlugin', 'uni
 // Inicializar el plugin
 function SPOLL__run_plugin()
 {
-    SimplePoll\Includes\SPOLL_ClassPlugin::init();
+    //SimplePoll\Includes\SPOLL_ClassPlugin::init();
     SimplePoll\Public\Shortcodes\SPOLL_Shortcodes::init();
     SimplePoll\Public\Shortcodes\SPOLL_ShortcodesDashboard::init();
 

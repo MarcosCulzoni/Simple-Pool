@@ -16,7 +16,7 @@ class SPOLL_ClassPlugin
     {
         error_log('Se ha activado SimplePoll');
 
-        //Crea la tabla para las encustas si no existe
+        //Crea la tabla para las encuestas si no existe
         global $wpdb;
 
         $table_name = $wpdb->prefix . 'encuestas_gastronomia';

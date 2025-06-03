@@ -1,4 +1,4 @@
-window.SimplePoll = window.SimplePoll || {}; // Namespace global
+window.SimplePoll = window.SimplePoll || {}; // se define un espacio de nombre simplePoll
 
 SimplePoll.SPOLL_Encuesta = class {
     constructor() {
@@ -44,6 +44,9 @@ SimplePoll.SPOLL_Encuesta = class {
         }
     }
 };
+
+
+
 
 
 

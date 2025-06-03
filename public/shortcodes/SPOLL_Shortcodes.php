@@ -17,11 +17,13 @@ class SPOLL_Shortcodes
         add_shortcode('spoll_form', [self::class, 'render_form']);
         add_action('wp_enqueue_scripts', [self::class, 'enqueue_assets']);
 
-        // AJAX actions
-        add_action('wp_ajax_spoll_guardar', [self::class, 'guardar_encuesta']);
-        add_action('wp_ajax_spoll_enviar', [self::class, 'enviar_encuesta']);
-        add_action('wp_ajax_spoll_descartar', [self::class, 'descartar_encuesta']);
+        // Se registran las acciones AJAX para manejar las peticiones guardar enviar y descartar encuestas
+        add_action('wp_ajax_nopriv_spoll_guardar', [self::class, 'guardar_encuesta']);
+        add_action('wp_ajax_nopriv_spoll_enviar', [self::class, 'enviar_encuesta']);
+        add_action('wp_ajax_nopriv_spoll_descartar', [self::class, 'descartar_encuesta']);
     }
+
+
 
 
 
@@ -37,6 +39,10 @@ class SPOLL_Shortcodes
             'nonce'    => wp_create_nonce('spoll_nonce')
         ]);
     }
+
+
+
+
 
     public static function render_form()
     {
@@ -63,6 +69,12 @@ class SPOLL_Shortcodes
         return ob_get_clean();
     }
 
+
+
+
+
+
+
     public static function guardar_encuesta()
     {
         check_ajax_referer('spoll_nonce', 'nonce');
@@ -72,6 +84,9 @@ class SPOLL_Shortcodes
 
         wp_send_json_success('Encuesta guardada.');
     }
+
+
+
 
     public static function enviar_encuesta()
     {
@@ -90,6 +105,10 @@ class SPOLL_Shortcodes
 
         wp_send_json_success('Encuesta enviada con éxito.');
     }
+
+
+
+    
 
     public static function descartar_encuesta()
     {
