@@ -62,9 +62,9 @@ class SPOLL_Shortcodes
             <textarea id="spoll-contenido" rows="25" style="width:100%;"><?php echo esc_textarea($contenido); ?></textarea>
 
             <div style="margin-top:10px; display: flex; justify-content: center; gap: 10px;">
-                <button id="spoll-btn-descartar">🧹 Descartar / Nueva</button>
-                <button id="spoll-btn-guardar">💾 Guardar</button>
-                <button id="spoll-btn-enviar">✅ Enviar</button>
+                <button id="spoll-btn-descartar">🧹 Discard / Start New </button>
+                <button id="spoll-btn-guardar">💾 Save / Continue Later</button>
+                <button id="spoll-btn-enviar">✅ Finish and Submit</button>
             </div>
 
             <div id="spoll-mensaje" style="margin-top:10px;"></div>

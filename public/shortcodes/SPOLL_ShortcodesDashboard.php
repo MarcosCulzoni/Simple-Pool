@@ -38,7 +38,7 @@ class SPOLL_ShortcodesDashboard
         $url_exportar = esc_url(admin_url('admin-post.php?action=exportar_encuestas_txt'));
 
         echo "<form method='post' action='$url_exportar'>
-            <button type='submit' style='margin-top: 20px;'>Exportar todas las encuestas</button>
+            <button type='submit' style='margin-top: 20px;'>📤 Export All Surveys</button>
           </form>";
 
         echo "</div>";
